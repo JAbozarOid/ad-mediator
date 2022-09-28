@@ -1,5 +1,6 @@
 package com.example.admediator.di
 
+import com.example.admediator.data.network.AdApi
 import com.example.admediator.utils.constants.ApiConstants.Companion.BASE_URL
 import com.example.admediator.utils.http.LiveDataCallAdapterFactory
 import com.example.admediator.utils.http.TokenInterceptor
@@ -63,6 +64,15 @@ object RetrofitModule {
             .addCallAdapterFactory(LiveDataCallAdapterFactory())
             .addConverterFactory(gsonConverterFactory)
             .build()
+    }
+
+    @Provides
+    @Singleton
+    fun provideAdNetworksApi(
+        @CloudRetrofit
+        retrofit: Retrofit
+    ): AdApi {
+        return retrofit.create(AdApi::class.java)
     }
 }
 

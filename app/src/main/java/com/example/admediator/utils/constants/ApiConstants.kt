@@ -5,10 +5,10 @@ class ApiConstants {
 
     companion object {
 
-        const val BASE_URL = "https://62cd6270a43bf780085748c6.mockapi.io/api/v1"
+        const val BASE_URL = "https://62cd6270a43bf780085748c6.mockapi.io/api/v1/"
 
         // adNetworks
-        const val AD_NETWORKS = "/adNetworks"
+        const val AD_NETWORKS = "adNetworks"
 
         //response message
         const val TIMEOUT = "timeout"
