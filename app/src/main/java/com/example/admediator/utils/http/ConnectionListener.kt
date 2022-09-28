@@ -12,8 +12,8 @@ import javax.inject.Singleton
 
 
 @Singleton
-class NetworkListener @Inject constructor() :
-    LiveData<NetworkModel?>() {
+class ConnectionListener @Inject constructor() :
+    LiveData<ConnectionModel?>() {
 
     init {
         networkMonitor()
@@ -38,7 +38,7 @@ class NetworkListener @Inject constructor() :
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe { isConnectedToHost: Boolean ->
                 isConnected = isConnectedToHost
-                value = NetworkModel(isConnected)
+                value = ConnectionModel(isConnected)
 
             }
 

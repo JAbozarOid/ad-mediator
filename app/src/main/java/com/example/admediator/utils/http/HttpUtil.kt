@@ -44,13 +44,13 @@ object HttpUtil {
 
     inline fun <T> genericRequestCollect(
         crossinline body: suspend () -> ApiResponse<T>,
-        networkListener: NetworkListener,
+        connectionListener: ConnectionListener,
         coroutineScope: CoroutineScope,
         crossinline collectFunction: (ApiResponse<T>) -> Unit
     ) = coroutineScope.launch(Dispatchers.IO) {
         flowResponse(
             body = body,
-            networkListener = networkListener
+            connectionListener = connectionListener
         ).collect {
             collectFunction(it)
         }
@@ -58,9 +58,9 @@ object HttpUtil {
 
     inline fun <T> flowResponse(
         crossinline body: suspend () -> ApiResponse<T>,
-        networkListener: NetworkListener
+        connectionListener: ConnectionListener
     ) = flow {
-        if (networkListener.isConnected) {
+        if (connectionListener.isConnected) {
             emit(ApiResponse.Loading())
             val result = body()
             emit(result)
